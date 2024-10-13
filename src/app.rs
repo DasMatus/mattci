@@ -1,4 +1,4 @@
-use epi::egui::{CentralPanel, Grid};
+use epi::egui::{CentralPanel, Grid, Label};
 use epi::{egui::Context, Frame};
 use epi::{
     egui::{self, SidePanel},
@@ -44,14 +44,14 @@ impl App for UI {
             });
             center.centered_and_justified(|action| {
                 for a in read_dir(&self.path).unwrap() {
-                    let a = action.unwrap();
                     let cfg: crate::cfg::Cfg =
-                        serde_yaml::from_str(read_to_string(a.path()).unwrap().as_str()).unwrap();
+                        serde_yaml::from_str(read_to_string(a.unwrap().path()).unwrap().as_str()).unwrap();
                     if action.button(cfg.name.clone()).clicked() {
                         self.id = cfg.name.into();
                     }
                     for step in cfg.steps {
-                        action.collapsing(&step.name, |workflow| {
+                        let l: String = step.name.into(); 
+                        action.collapsing(l, |workflow| {
                             
                         });
                         
