@@ -1,0 +1,10 @@
+[package]
+name = "MattCI"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+egui_web = "0.17.0"
+epi = "0.17.0"
+serde = { version = "1.0.210", features = ["derive"] }
+serde_yaml = "0.9.34"
